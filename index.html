@@ -2,49 +2,44 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home Page</title>
-  <!--CSS Stylesheet-->
-  <link rel="stylesheet" href="./index.css" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="index.css">
+  <title>Awesome Books with ES6</title>
 </head>
 
 <body>
-  <div class="header">
-    <div><p>Awesome Books</p></div>
+  <header>
+    <h2>Awesome Books</h2>
     <nav>
-      <ul class="nav">
-        <li><a href="#" id="link-list" data-section="listBook">List</a></li>
-        <li><hr></li>
-        <li><a href="#" id="link-add" data-section="newBook">Add new</a></li>
-        <li><hr></li>
-        <li><a href="#" id="link-contact" data-section="contact">Contact</a></li>
+      <ul>
+        <li><a href="#" id="link-list" data-to="list">List</a></li>
+        <li><a href="#" id="link-add" data-to="form">Add new</a></li>
+        <li><a href="#" id="link-contact" data-to="contact">Contact</a></li>
       </ul>
     </nav>
-    </div>
-    <div class="containerDate"><p id="today"></p></div>
-  <section class="listBook">
-    <h1>All Awesome Books</h1>
-    <ul id="containerBooks">
+  </header>
+  <p id="today"></p>
+  <section class="list">
+    <h1>Awesome Books</h1>
+    <ul class="books-container" id="books-cont">
+
     </ul>
   </section>
-  <section class="newBook hidden">
-    <form class="form" id="form1">
-        <h1>Add a new book</h1>
-        <div> 
-            <input type="text" id="title" class="title1" placeholder="Title" required>
-        </div>
-        <div>
-            <input type="text" id="author" class="author1" placeholder="Author" required>
-        </div>
-        <div class="addBtn">
-          <button type="submit" class="addBook">Add</button>
-        </div>
-      </form>
+  <section class="form hidden">
+    <form name="bookForm">
+      <h2>Add a new book</h2>
+      <input name="title" type="text" required placeholder="Title">
+      <input name="author" type="text" required placeholder="Author">
+      <button type="submit">Add</button>
+    </form>
   </section>
   <section class="contact hidden">
-    <h1>Contact information</h1>
-    <p>Do have any questions or just want to say "Hello"?<br>You can reach out to us!</p>
+    <h2>Contact Information</h2>
+    <p>Do have any questions or just want to say "Hello"?</p>
+    <p>You can reach out to us!</p>
     <ul>
       <li>Our e-mail mail@mail.com</li>
       <li>Our Phone number: 0043586534422</li>
@@ -52,9 +47,9 @@
     </ul>
   </section>
   <footer>
-    Copyright ...
+    Copyright Awesome Books 2022
   </footer>
-<script type="module" src="./index.js"></script>
+  <script src="./index.js" type="module"></script>
 </body>
 
 </html>
