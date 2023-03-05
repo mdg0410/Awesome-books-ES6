@@ -1,7 +1,10 @@
 import Book from './books.js';
+import BookForm from './bookForm.js';
 
 class Display {
   books = [];
+
+  workForm = ''
 
   booksContainer = document.getElementById('containerBooks');
 
@@ -9,7 +12,20 @@ class Display {
     if (localStorage.getItem('book')) {
       this.books = JSON.parse(localStorage.getItem('book')).map((book) => new Book(book.title, book.author, book.id));
     }
+
+    this.setCurrentForm();
   }
+
+  setCurrentForm(name = 'addBook', index = this.books.length + 1) {
+    this.workForm = new BookForm(name, index);
+    this.workForm.form.onsubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+  }
+
 
   addBook(newBook) {
     this.books.push(newBook);
@@ -24,14 +40,14 @@ class Display {
   }
 
   render() {
-    this.booksContainer.innerHTML = '';
+    this.booksContainer.querySelectorAll('[data-task]').forEach((book) => book.removeBook());
+
     if (this.books.length === 0) {
       this.booksContainer.innerHTML = '<h3>There are no books.</h3>';
       return;
     }
-    for (let i = 0; i < this.books.length; i += 1) {
-      this.booksContainer.append(this.books[i].createNode());
-    }
+    
+    this.
   }
 
   saveBooks() {
