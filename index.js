@@ -1,54 +1,20 @@
+import './modules/BookForm.js';
+import { library } from './modules/Library.js';
 import { DateTime } from './modules/luxon.js';
-import Book from './modules/books.js';
-import Display from './modules/display.js';
+import Router from './modules/Router.js';
 
-let display;
-const today = document.getElementById('today');
+const todayContainer = document.getElementById('today');
+const routerLinks = document.querySelectorAll('[data-to]');
 
-window.onload = () => {
-  display = new Display();
-  display.render();
-  today.textContent = DateTime.now();
-};
+todayContainer.textContent = DateTime.now().toFormat('DDD, tt');
 
-const len = () => {
-  const aux = display.books.length;
-  let aux1;
-  if (aux !== 0) {
-    aux1 = display.books[aux - 1].id + 1;
-  } else {
-    aux1 = 1;
-  }
-  return aux1;
-};
+library.render();
 
-document.forms[0].onsubmit = (e) => {
-  e.preventDefault();
-  const thisForm = e.target;
-  const title = thisForm[0].value;
-  const author = thisForm[1].value;
-  const id = len();
-  const newBook = new Book(title, author, id);
-  display.addBook(newBook);
-  thisForm.reset();
-};
+const router = new Router('list');
 
-function changePage(link) {
-  const sections = document.querySelectorAll('section');
-  sections.forEach((section) => {
-    if (section.classList.contains(link)) {
-      section.classList.remove('hidden');
-    } else {
-      section.classList.add('hidden');
-    }
+routerLinks.forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    router.navigate(link.dataset.to);
   });
-}
-
-const pageLinks = document.querySelectorAll('[data-section]');
-
-pageLinks.forEach((link) => {
-  link.onclick = (event) => {
-    event.preventDefault();
-    changePage(link.dataset.section);
-  };
 });

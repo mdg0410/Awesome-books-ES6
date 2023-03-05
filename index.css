@@ -1,126 +1,125 @@
-@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:wght@300;400;500&display=swap');
+section.hidden {
+  display: none !important;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 body {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10vh 20% 0 20%;
-  font-family: 'Shantell Sans', cursive;
+  padding: 2em 5em;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 16px;
 }
 
-.header {
+body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+header ul {
+  display: flex;
+}
+
+header,
+section.list ul,
+footer {
+  border: 2px solid black;
+  box-shadow: 2px 2px rgb(43, 42, 42);
+}
+
+header,
+footer {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  height: 40px;
-  padding: 1px 12px;
   align-items: center;
-  border: 3px solid black;
+  padding: 1em 2em;
 }
 
-.nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 30px;
-  list-style-type: none;
-}
-
-hr {
-  width: 12px;
-  transform: rotate(90deg);
-}
-
-a {
+header ul a {
   text-decoration: none;
   color: black;
 }
 
-a:hover {
-  color: blue;
+header ul li:nth-child(-n+2)::after {
+  content: '|';
+  padding: 0 2em;
 }
 
-.containerDate {
-  width: 100%;
+#today {
+  text-align: right;
+  padding: 1em 0;
+}
+
+section.list {
+  padding: 1em 0;
+}
+
+section.list h1 {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+section.list ul li {
+  padding: 0.5em 2em;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
 }
 
-#containerBooks {
+section.list ul li:nth-child(odd) {
+  background-color: rgb(180, 180, 180);
+}
+
+section form,
+section.contact {
   display: flex;
   flex-direction: column;
-  justify-self: center;
-  list-style: none;
-  padding: 0;
-  width: 100%;
-  border: black solid 3px;
+  gap: 1.2em;
+  width: 60%;
+  margin: 0 auto;
 }
 
-#containerBooks li:nth-child(odd) {
-  background-color: #e4e4e4;
-}
-
-.viewBook {
-  display: grid;
-  grid-template-columns: auto 30%;
-  margin: 0.5vh 1vh 1vh 1vh;
-}
-
-.hidden {
-  display: none;
-}
-
-.line {
-  width: 30vh;
-  height: 2px;
-  background-color: black;
+section h2 {
+  align-self: center;
+  font-weight: 600;
 }
 
 button {
+  box-shadow: 2px 2px black;
   border: 2px solid black;
-  box-shadow: 2px 2px;
-  font-family: 'Shantell Sans', cursive;
+  padding: 0.3em 0.6em;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2vh;
-  width: 100%;
+section form button {
+  align-self: flex-end;
 }
 
-.form div {
-  display: flex;
-  align-items: flex-end;
-  width: 60%;
+section form input {
+  padding: 0.8em;
+  border: 2px solid black;
 }
 
-.form input {
-  border: black solid 3px;
-  height: 3vh;
-  width: 100%;
-  padding-left: 1vh;
-  font-weight: 900;
-  font-family: 'Shantell Sans', cursive;
+section form input:focus {
+  border: 2px solid gray;
+  outline: none;
 }
 
-.addBtn {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-}
-
-.addBook {
-  padding: 0.5vh 2vh 0.5vh 2vh;
+section.contact ul {
+  list-style: disc;
+  padding-left: 1.5em;
 }
 
 footer {
-  display: flex;
-  width: 100%;
-  border: black solid 3px;
-  margin-top: 20vh;
-  padding: 1vh;
+  margin-top: 2em;
 }
