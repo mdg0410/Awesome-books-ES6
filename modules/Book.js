@@ -1,6 +1,4 @@
-export default class Book {
-  id = new Date().getTime();
-
+class Book {
   constructor(title, author, id = null) {
     this.title = title;
     this.author = author;
@@ -13,12 +11,13 @@ export default class Book {
     const bookNode = document.createElement('li');
     const btn = document.createElement('button');
     btn.textContent = 'Remove';
-
     bookNode.innerHTML = `
-        <span>'${this.title}' by ${this.author}</span> 
+    <span>'${this.title}' by ${this.author}</span> 
     `;
-    bookNode.append(btn);
+    bookNode.appendChild(btn);
 
-    return { bookNode, btn };
+    return { bookNode, btn, index: this.id };
   }
 }
+
+export default Book;

@@ -1,58 +1,60 @@
-import Book from './books.js';
+import Book from './Book.js';
 import BookForm from './bookForm.js';
 
-class Display {
+export class Display {
   books = [];
 
   workForm = ''
-
-  booksContainer = document.getElementById('containerBooks');
 
   constructor() {
     if (localStorage.getItem('book')) {
       this.books = JSON.parse(localStorage.getItem('book')).map((book) => new Book(book.title, book.author, book.id));
     }
-
     this.setCurrentForm();
   }
 
-  setCurrentForm(name = 'addBook', index = this.books.length + 1) {
-    this.workForm = new BookForm(name, index);
+  setCurrentForm = (name = 'bookForm') => {
+    this.workForm = new BookForm(name);
     this.workForm.form.onsubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
-
+    // eslint-disable-next-line max-len
+    this.addBook(this.workForm.form.title.value, this.workForm.form.author.value, this.books.length);
+    this.workForm.form.reset();
   }
 
-
-  addBook(newBook) {
-    this.books.push(newBook);
+  addBook = (title, author, index) => {
+    const book = new Book(title, author, this.books[index - 1].id + 1);
+    this.books.push(book);
     this.render();
     this.saveBooks();
   }
 
-  removeBook(id) {
+  removeBook = (id) => {
     this.books = this.books.filter((book) => book.id !== id);
     this.render();
     this.saveBooks();
   }
 
-  render() {
-    this.booksContainer.querySelectorAll('[data-task]').forEach((book) => book.removeBook());
-
+  render = () => {
+    const booksContainer = document.getElementById('books-cont');
+    booksContainer.innerHTML = '';
     if (this.books.length === 0) {
-      this.booksContainer.innerHTML = '<h3>There are no books.</h3>';
-      return;
+      booksContainer.innerHTML = '<h3>There are no books.</h3>';
+    } else {
+      this.books.forEach((book) => {
+        const { bookNode, btn, index } = book.createNode();
+        booksContainer.append(bookNode);
+        btn.onclick = () => this.removeBook(index);
+      });
     }
-    
-    this.
   }
 
-  saveBooks() {
+  saveBooks = () => {
     localStorage.setItem('book', JSON.stringify(this.books));
   }
 }
 
-export default Display;
+export default new Display();
