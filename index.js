@@ -1,3 +1,12 @@
-const hello = document.querySelector('.title');
+import Router from './modules/Router.js';
 
-hello.innerHTML += ' !!';
+const routerLinks = document.querySelectorAll('[data-to]');
+
+const router = new Router('list');
+
+routerLinks.forEach((link) => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    router.navigate(link.dataset.to);
+  });
+});
