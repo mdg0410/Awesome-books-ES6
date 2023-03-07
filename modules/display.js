@@ -16,17 +16,18 @@ export class Display {
   setCurrentForm = (name = 'bookForm') => {
     this.workForm = new BookForm(name);
     this.workForm.form.onsubmit = this.handleSubmit.bind(this);
+    console.log(this.books);
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     // eslint-disable-next-line max-len
-    this.addBook(this.workForm.form.title.value, this.workForm.form.author.value, this.books.length);
+    this.addBook(this.workForm.form.title.value, this.workForm.form.author.value, this.books.length + 1);
     this.workForm.form.reset();
   }
 
   addBook = (title, author, index) => {
-    if (index !== 0) { index = this.books[index - 1].id + 1; } else { index = 1; }
+    // if (index !== 0) { index = this.books[index - 1].id + 1; } else { index = 1; }
     const book = new Book(title, author, index);
     this.books.push(book);
     this.render();
@@ -35,6 +36,9 @@ export class Display {
 
   removeBook = (id) => {
     this.books = this.books.filter((book) => book.id !== id);
+    for (let i = 0; i < this.books.length; i += 1) {
+      this.books[i].id = i + 1;
+    }
     this.render();
     this.saveBooks();
   }
