@@ -100,6 +100,10 @@ Now you can go and play with it as you wish :smile:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
+- [ **Edite book** ]
+- [ **Clear all books** ]
+- [ **Add Transition 3D** ]
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Show your support
