@@ -1,3 +1,5 @@
-const hello = document.querySelector('.title');
+import { DateTime } from './modules/luxon.js';
 
-hello.innerHTML += ' !!';
+const todayContainer = document.getElementById('today');
+
+todayContainer.textContent = DateTime.now().toFormat('DDD, tt');
