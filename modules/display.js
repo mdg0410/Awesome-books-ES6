@@ -20,14 +20,12 @@ class Display {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.books.length);
     // eslint-disable-next-line max-len
     this.addBook(this.workForm.form.title.value, this.workForm.form.author.value, this.books.length + 1);
     this.workForm.form.reset();
   }
 
   addBook(title, author, index) {
-    console.log(index);
     const book = new Book(title, author, index);
     this.books.push(book);
     this.render();

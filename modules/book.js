@@ -6,7 +6,7 @@ class Book {
   }
 
   createNode() {
-    const Node = document.createElement('div');
+    const Node = document.createElement('li');
     const btn = document.createElement('button');
 
     btn.textContent = 'Remove';
