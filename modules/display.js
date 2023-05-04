@@ -9,9 +9,11 @@ class Display {
   constructor() {
     if (localStorage.getItem('book')) {
       this.books = JSON.parse(localStorage.getItem('book')).map((book) => new Book(book.title, book.author, book.index));
+
     }
     this.setCurrentForm();
   }
+
 
   setCurrentForm(name = 'bookForm') {
     this.workForm = new BookForm(name);
@@ -19,6 +21,7 @@ class Display {
   }
 
   handleSubmit(e) {
+
     e.preventDefault();
     // eslint-disable-next-line max-len
     this.addBook(this.workForm.form.title.value, this.workForm.form.author.value, this.books.length + 1);
@@ -26,6 +29,7 @@ class Display {
   }
 
   addBook(title, author, index) {
+
     const book = new Book(title, author, index);
     this.books.push(book);
     this.render();
@@ -35,6 +39,7 @@ class Display {
   removebook(index) {
     // this.books = [];
     this.books = this.books.filter((book) => book.index !== index);
+
     for (let i = 0; i < this.books.length; i += 1) {
       this.books[i].id = i + 1;
     }
@@ -52,13 +57,16 @@ class Display {
         const { Node, btn, index } = book.createNode();
         bookContainer.append(Node);
         btn.onclick = () => this.removebook(index);
+
       });
     }
   }
 
   saveBooks() {
+
     localStorage.setItem('book', JSON.stringify(this.books));
   }
 }
+
 
 export default new Display();
