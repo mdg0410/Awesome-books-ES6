@@ -1,9 +1,11 @@
 import { DateTime } from './modules/luxon.js';
-import display from './modules/display.js';
-import Router from './modules/Router.js';
 
-const todayContainer = document.getElementById('today');
+import Router from './modules/router.js';
+import display from './modules/display.js';
+
 const routerLinks = document.querySelectorAll('[data-to]');
+const todayContainer = document.getElementById('today');
+
 
 todayContainer.textContent = DateTime.now().toFormat('DDD, tt');
 
@@ -16,4 +18,6 @@ routerLinks.forEach((link) => {
     e.preventDefault();
     router.navigate(link.dataset.to);
   });
+
 });
+
